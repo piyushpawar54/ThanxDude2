@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">ThanxDude</string>
+    <string name="login_logo">Welcome to</string>
+    <string name="login_email_hint">E-mail</string>
+    <string name="login_pass_hint">Password</string>
+    <string name="login_btn_text">Login To Account</string>
+    <string name="login_signup_btn">Need A new Account?</string>
+    <string name="action_search">Search</string>
+    <string name="action_account_setting">Account Setting</string>
+    <string name="action_logout">Logout</string>
+    <string name="reg_confpass_hint">Confirm Password</string>
+    <string name="reg_btn_text">Create New Account</string>
+    <string name="reg_login_btn">Already have an Account?</string>
+</resources>
