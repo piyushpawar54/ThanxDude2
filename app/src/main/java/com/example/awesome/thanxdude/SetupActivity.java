@@ -92,7 +92,7 @@ public class SetupActivity extends AppCompatActivity {
                         mainImageURI = Uri.parse(Dimage);
 
                         name.setText(Dname);
-
+                        mob_no.setText(Dmobile);
                         RequestOptions placeholderrequest = new RequestOptions();
                         placeholderrequest.placeholder(R.drawable.default_image);
 
@@ -174,7 +174,7 @@ public class SetupActivity extends AppCompatActivity {
                     if(ContextCompat.checkSelfPermission(SetupActivity.this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)
                     {
                         ActivityCompat.requestPermissions(SetupActivity.this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                        Toast.makeText(SetupActivity.this,"You  permission",Toast.LENGTH_LONG).show();
+                        Toast.makeText(SetupActivity.this,"You have permission",Toast.LENGTH_LONG).show();
 
                     }
                     else

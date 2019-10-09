@@ -18,6 +18,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firestore.admin.v1beta1.Progress;
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -80,8 +81,9 @@ public class RegisterActivity extends AppCompatActivity {
                             {
                                 String error = task.getException().getMessage();
                                 Toast.makeText(RegisterActivity.this,"Error: " + error,Toast.LENGTH_LONG).show();
+                                regprogress.setVisibility(View.INVISIBLE);
+
                             }
-                            regprogress.setVisibility(View.INVISIBLE);
                         }
                     });
                 }
@@ -90,6 +92,7 @@ public class RegisterActivity extends AppCompatActivity {
                     Toast.makeText(RegisterActivity.this,"Check your Fields bro! ",Toast.LENGTH_LONG).show();
 
                 }
+                regprogress.setVisibility(View.INVISIBLE);
 
             }
         });

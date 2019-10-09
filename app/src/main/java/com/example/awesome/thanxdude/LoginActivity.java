@@ -61,26 +61,29 @@ public class LoginActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(loginEmail) && !TextUtils.isEmpty(loginPass) )
                 {
+                    loginProgress.setVisibility(View.VISIBLE);
+
                     mAuth.signInWithEmailAndPassword(loginEmail, loginPass).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if(task.isSuccessful())
                             {
                                 sendtomain();
-                                loginProgress.setVisibility(View.VISIBLE);
 
                             }
                             else
                             {
                                 String errormessage = task.getException().getMessage();
                                 Toast.makeText(LoginActivity.this,"error:" + errormessage,Toast.LENGTH_LONG).show();
+                                loginProgress.setVisibility(View.INVISIBLE);
 
                             }
-                            loginProgress.setVisibility(View.INVISIBLE);
 
                         }
                     });
                 }
+                loginProgress.setVisibility(View.INVISIBLE);
+
             }
         });
 
