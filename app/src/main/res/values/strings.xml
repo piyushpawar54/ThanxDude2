@@ -11,4 +11,7 @@
     <string name="reg_confpass_hint">Confirm Password</string>
     <string name="reg_btn_text">Create New Account</string>
     <string name="reg_login_btn">Already have an Account?</string>
+    <string name="setup_name_hint">Name</string>
+    <string name="setup_mobile_hint">WhatsApp Number</string>
+    <string name="setup_btn">Update Settings</string>
 </resources>

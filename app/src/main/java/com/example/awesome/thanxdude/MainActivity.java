@@ -3,6 +3,7 @@ package com.example.awesome.thanxdude;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -62,6 +63,11 @@ public class MainActivity extends AppCompatActivity {
         {
             case R.id.action_logout_btn:
                 logout();
+                return  true;
+            case R.id.action_accountsetup_btn:
+                Intent setupintent = new Intent(MainActivity.this,SetupActivity.class);
+                startActivity(setupintent);
+                finish();
                 return  true;
 
 
