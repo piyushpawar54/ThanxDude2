@@ -14,4 +14,6 @@
     <string name="setup_name_hint">Name</string>
     <string name="setup_mobile_hint">WhatsApp Number</string>
     <string name="setup_btn">Update Settings</string>
+    <string name="newpost_details_hint">Add Post Description</string>
+    <string name="new_post_btn_hint">Post It!</string>
 </resources>
