@@ -3,18 +3,19 @@ package com.example.awesome.thanxdude;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,6 +33,11 @@ public class MainActivity extends AppCompatActivity {
 
     private FloatingActionButton addPostBtn;
 
+    private BottomNavigationView mainBottomNav;
+
+    private HomeFragment homeFragment;
+    private NotificationFragment notificationFragment;
+    private AccountFragment accountFragment;
 
 
 
@@ -47,8 +53,37 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(maintoolbar);
         getSupportActionBar().setTitle("ThanxDude");
 
-        addPostBtn = findViewById(R.id.add_post_btn);
+        mainBottomNav = findViewById(R.id.mainBottomView);
 
+        //FRAGMENTS
+        homeFragment = new HomeFragment();
+        notificationFragment = new NotificationFragment();
+        accountFragment = new AccountFragment();
+
+        mainBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId())
+                {
+                    case R.id.bottom_home:
+                        replaceFragment(homeFragment);
+                        return true;
+
+                    case R.id.bottom_notify:
+                        replaceFragment(notificationFragment);
+                        return true;
+
+                    case R.id.bottom_account:
+                        replaceFragment(accountFragment);
+                        return true;
+
+                    default:
+                        return false;
+                }
+            }
+        });
+
+        addPostBtn = findViewById(R.id.add_post_btn);
         addPostBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -136,6 +171,13 @@ public class MainActivity extends AppCompatActivity {
     private void logout() {
         mAuth.signOut();;
         sendtologin();
+    }
+
+    private void replaceFragment(Fragment fragment){
+
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.main_container, fragment);
+        fragmentTransaction.commit();
     }
 
 }

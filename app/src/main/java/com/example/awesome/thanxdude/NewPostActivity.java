@@ -35,10 +35,10 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 public class NewPostActivity extends AppCompatActivity {
 
-    private static final int MAX_LENGTH = 100;
     private Toolbar newPostToolbar;
 
     private ImageView newPostImage;
@@ -99,7 +99,7 @@ public class NewPostActivity extends AppCompatActivity {
                 {
                     newpostprogress.setVisibility(View.VISIBLE);
 
-                    String randomName = random();
+                    String randomName = UUID.randomUUID().toString();
 
                     final StorageReference filePath = mStorageReference.child("post_images").child(randomName +".jpg");
                     filePath.putFile(postImageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
@@ -180,17 +180,5 @@ public class NewPostActivity extends AppCompatActivity {
         }
     }
 
-    public static String random()
-    {
-        Random generator = new Random();
-        StringBuilder randomStringBuilder = new StringBuilder();
-        int randomLength = generator.nextInt(MAX_LENGTH);
-        char tempChar;
-        for (int i = 0; i <randomLength; i++)
-        {
-            tempChar = (char) (generator.nextInt(96)+32);
-            randomStringBuilder.append(tempChar);
-        }
-        return randomStringBuilder.toString();
-    }
+
 }

@@ -16,4 +16,13 @@
     <string name="setup_btn">Update Settings</string>
     <string name="newpost_details_hint">Add Post Description</string>
     <string name="new_post_btn_hint">Post It!</string>
+    <string name="bottom_home_text">Home</string>
+    <string name="bottom_notifiaction_text">Notification</string>
+    <string name="bottom_account_text">Account</string>
+    <string name="bottom_home">Home</string>
+    <string name="bottom_notifiaction">Notifiaction</string>
+    <string name="bottom_account">Account</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
