@@ -112,7 +112,7 @@ public class BlogRecyclerAdapter extends RecyclerView.Adapter<BlogRecyclerAdapte
             blogImageView = mView.findViewById(R.id.blog_image);
             RequestOptions requestOptions = new RequestOptions();
             requestOptions.placeholder(R.drawable.add_post);
-            Glide.with(mContext).applyDefaultRequestOptions(requestOptions).load(DownloadUri).into(blogImageView);
+            Glide.with(mContext).load(DownloadUri).into(blogImageView);
         }
 
 

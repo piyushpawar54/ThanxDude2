@@ -16,6 +16,7 @@ import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
@@ -60,7 +61,11 @@ public class HomeFragment extends Fragment {
         if(mAuth.getCurrentUser() != null)
         {
             mFirebaseFirestore = FirebaseFirestore.getInstance();
-            mFirebaseFirestore.collection("Posts").addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+            Query firstQuery = mFirebaseFirestore.collection("Posts").orderBy("timestamp", Query.Direction.DESCENDING);
+
+
+            firstQuery.addSnapshotListener(getActivity(),new EventListener<QuerySnapshot>() {
                 @Override
                 public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                     for (DocumentChange doc: queryDocumentSnapshots.getDocumentChanges())

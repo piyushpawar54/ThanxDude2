@@ -7,10 +7,6 @@
         android:icon="@drawable/baseline_home_black_24dp"
         android:title="@string/bottom_home" />
     <item
-        android:id="@+id/bottom_notify"
-        android:icon="@drawable/baseline_notifications_black_24dp"
-        android:title="@string/bottom_notifiaction" />
-    <item
         android:id="@+id/bottom_account"
         android:icon="@drawable/baseline_account_box_black_24dp"
         android:title="@string/bottom_account" />

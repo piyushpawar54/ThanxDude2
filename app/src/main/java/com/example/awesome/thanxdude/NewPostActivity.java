@@ -98,7 +98,7 @@ public class NewPostActivity extends AppCompatActivity {
 
                 if(!TextUtils.isEmpty(desc) && postImageURI != null)
                 {
-                    newpostprogress.setVisibility(View.VISIBLE);
+
 
                     String randomName = UUID.randomUUID().toString();
 
@@ -108,7 +108,7 @@ public class NewPostActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
                             if(task.isSuccessful())
                             {
-
+                                newpostprogress.setVisibility(View.VISIBLE);
                                 File newImageFile = new File(postImageURI.getPath());
 
                                //  compressedImageFile = new Compressor(NewPostActivity.this).compressToFile(newImageFile);
@@ -140,7 +140,9 @@ public class NewPostActivity extends AppCompatActivity {
                                                 }
                                                 else
                                                 {
-
+                                                    newpostprogress.setVisibility(View.INVISIBLE);
+                                                    String error = task.getException().getMessage().toString();
+                                                    Toast.makeText(NewPostActivity.this,"Error:"+ error, Toast.LENGTH_LONG).show();
                                                 }
 
                                                 newpostprogress.setVisibility(View.INVISIBLE);
@@ -160,7 +162,7 @@ public class NewPostActivity extends AppCompatActivity {
                                 newpostprogress.setVisibility(View.INVISIBLE);
                                 String error = task.getException().getMessage().toString();
                                 Toast.makeText(NewPostActivity.this,"Error:"+ error, Toast.LENGTH_LONG).show();
-                                newpostprogress.setVisibility(View.INVISIBLE);
+
                             }
                         }
                     });
