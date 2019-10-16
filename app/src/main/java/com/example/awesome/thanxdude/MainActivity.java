@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Toolbar maintoolbar;
 
+
     private  FirebaseAuth mAuth;
     private FirebaseFirestore mFirebaseFirestore;
 
@@ -45,7 +46,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         mAuth = FirebaseAuth.getInstance();
         mFirebaseFirestore = FirebaseFirestore.getInstance();
 
@@ -59,6 +59,8 @@ public class MainActivity extends AppCompatActivity {
         homeFragment = new HomeFragment();
         notificationFragment = new NotificationFragment();
         accountFragment = new AccountFragment();
+
+        //replaceFragment(homeFragment);
 
         mainBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override

@@ -49,6 +49,7 @@ public class SetupActivity extends AppCompatActivity {
     private ProgressBar setupprogress;
     private Uri mainImageURI = null;
 
+
     private String userName;
     private String mobileNumber;
     private String user_id;
@@ -73,7 +74,6 @@ public class SetupActivity extends AppCompatActivity {
         mob_no = findViewById(R.id.setup_Mobile);
         setupbtn = findViewById(R.id.setupBtn);
         setupprogress = findViewById(R.id.setup_progress);
-
         mAuth = FirebaseAuth.getInstance();
         user_id = mAuth.getCurrentUser().getUid();
         mStorageReference = FirebaseStorage.getInstance().getReference();
@@ -141,7 +141,7 @@ public class SetupActivity extends AppCompatActivity {
                         user_id = mAuth.getCurrentUser().getUid();
 
                               image_path = mStorageReference.child("profile_images").child(user_id + ".jpeg");
-                            image_path.putFile(mainImageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
+                              image_path.putFile(mainImageURI).addOnCompleteListener(new OnCompleteListener<UploadTask.TaskSnapshot>() {
                             @Override
                             public void onComplete(@NonNull Task<UploadTask.TaskSnapshot> task) {
 

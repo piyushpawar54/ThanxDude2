@@ -19,6 +19,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
@@ -113,35 +114,43 @@ public class NewPostActivity extends AppCompatActivity {
                                //  compressedImageFile = new Compressor(NewPostActivity.this).compressToFile(newImageFile);
 
 
-                                String download_uri = filePath.getDownloadUrl().toString();
-
-                                Map<String, Object> postMap = new HashMap<>();
-                                postMap.put("image_url",download_uri);
-                                postMap.put("desc",desc);
-                                postMap.put("user_id", current_user_id);
-                                postMap.put("timestamp",FieldValue.serverTimestamp());
-
-                                mFirebaseFirestore.collection("Posts").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                 filePath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
-                                    public void onComplete(@NonNull Task<DocumentReference> task) {
+                                    public void onSuccess(Uri uri) {
 
-                                        if(task.isSuccessful())
-                                        {
-                                            Toast.makeText(NewPostActivity.this,"Post is added", Toast.LENGTH_LONG).show();
-                                            Intent mainintent = new Intent(NewPostActivity.this,MainActivity.class);
-                                            startActivity(mainintent);
-                                            finish();
+                                        String download_uri = uri.toString();
 
-                                        }
-                                        else
-                                        {
+                                        Map<String, Object> postMap = new HashMap<>();
+                                        postMap.put("image_url",download_uri);
+                                        postMap.put("desc",desc);
+                                        postMap.put("user_id", current_user_id);
+                                        postMap.put("timestamp",FieldValue.serverTimestamp());
 
-                                        }
+                                        mFirebaseFirestore.collection("Posts").add(postMap).addOnCompleteListener(new OnCompleteListener<DocumentReference>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<DocumentReference> task) {
 
-                                        newpostprogress.setVisibility(View.INVISIBLE);
+                                                if(task.isSuccessful())
+                                                {
+                                                    Toast.makeText(NewPostActivity.this,"Post is added", Toast.LENGTH_LONG).show();
+                                                    Intent mainintent = new Intent(NewPostActivity.this,MainActivity.class);
+                                                    startActivity(mainintent);
+                                                    finish();
+
+                                                }
+                                                else
+                                                {
+
+                                                }
+
+                                                newpostprogress.setVisibility(View.INVISIBLE);
+
+                                            }
+                                        });
 
                                     }
                                 });
+
 
 
 
