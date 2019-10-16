@@ -53,49 +53,56 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(maintoolbar);
         getSupportActionBar().setTitle("ThanxDude");
 
-        mainBottomNav = findViewById(R.id.mainBottomView);
+        if(mAuth.getCurrentUser() != null)
+        {
 
-        //FRAGMENTS
-        homeFragment = new HomeFragment();
-        notificationFragment = new NotificationFragment();
-        accountFragment = new AccountFragment();
 
-        //replaceFragment(homeFragment);
 
-        mainBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId())
-                {
-                    case R.id.bottom_home:
-                        replaceFragment(homeFragment);
-                        return true;
+            mainBottomNav = findViewById(R.id.mainBottomView);
 
-                    case R.id.bottom_notify:
-                        replaceFragment(notificationFragment);
-                        return true;
+            //FRAGMENTS
+            homeFragment = new HomeFragment();
+            notificationFragment = new NotificationFragment();
+            accountFragment = new AccountFragment();
 
-                    case R.id.bottom_account:
-                        replaceFragment(accountFragment);
-                        return true;
+            //replaceFragment(homeFragment);
 
-                    default:
-                        return false;
+            mainBottomNav.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    switch (item.getItemId())
+                    {
+                        case R.id.bottom_home:
+                            replaceFragment(homeFragment);
+                            return true;
+
+                        case R.id.bottom_notify:
+                            replaceFragment(notificationFragment);
+                            return true;
+
+                        case R.id.bottom_account:
+                            replaceFragment(accountFragment);
+                            return true;
+
+                        default:
+                            return false;
+                    }
                 }
-            }
-        });
+            });
 
-        addPostBtn = findViewById(R.id.add_post_btn);
-        addPostBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            addPostBtn = findViewById(R.id.add_post_btn);
+            addPostBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-                Intent newpostintent = new Intent(MainActivity.this, NewPostActivity.class);
-                startActivity(newpostintent);
-                finish();
+                    Intent newpostintent = new Intent(MainActivity.this, NewPostActivity.class);
+                    startActivity(newpostintent);
+                    finish();
 
-            }
-        });
+                }
+            });
+
+        }
 
     }
 

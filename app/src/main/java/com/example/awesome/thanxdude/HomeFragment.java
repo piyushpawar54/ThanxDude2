@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment {
     private RecyclerView blog_list_view;
     private List<BlogPost> blog_list;
 
+    private FirebaseAuth mAuth;
     private FirebaseFirestore mFirebaseFirestore;
     private BlogRecyclerAdapter blogRecyclerAdapter;
 
@@ -48,26 +50,33 @@ public class HomeFragment extends Fragment {
         blog_list = new ArrayList<>();
         blog_list_view = view.findViewById(R.id.blog_list_view);
 
+        mAuth = FirebaseAuth.getInstance();
+
         blogRecyclerAdapter = new BlogRecyclerAdapter(blog_list);
         blog_list_view.setLayoutManager(new LinearLayoutManager(getActivity()));
         blog_list_view.setAdapter(blogRecyclerAdapter);
 
-        mFirebaseFirestore = FirebaseFirestore.getInstance();
-        mFirebaseFirestore.collection("Posts").addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
-                for (DocumentChange doc: queryDocumentSnapshots.getDocumentChanges())
-                {
-                    if( doc.getType() == DocumentChange.Type.ADDED)
-                    {
-                        BlogPost blogPost = doc.getDocument().toObject(BlogPost.class);
-                        blog_list.add(blogPost);
 
-                        blogRecyclerAdapter.notifyDataSetChanged();
+        if(mAuth.getCurrentUser() != null)
+        {
+            mFirebaseFirestore = FirebaseFirestore.getInstance();
+            mFirebaseFirestore.collection("Posts").addSnapshotListener(new EventListener<QuerySnapshot>() {
+                @Override
+                public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                    for (DocumentChange doc: queryDocumentSnapshots.getDocumentChanges())
+                    {
+                        if( doc.getType() == DocumentChange.Type.ADDED)
+                        {
+                            BlogPost blogPost = doc.getDocument().toObject(BlogPost.class);
+                            blog_list.add(blogPost);
+
+                            blogRecyclerAdapter.notifyDataSetChanged();
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
+
         // Inflate the layout for this fragment
         return view;
 
