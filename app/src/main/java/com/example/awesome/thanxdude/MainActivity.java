@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView mainBottomNav;
 
     private HomeFragment homeFragment;
-    private NotificationFragment notificationFragment;
+
     private AccountFragment accountFragment;
 
 
@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
             //FRAGMENTS
             homeFragment = new HomeFragment();
-            notificationFragment = new NotificationFragment();
+
             accountFragment = new AccountFragment();
 
             //replaceFragment(homeFragment);
