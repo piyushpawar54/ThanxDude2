@@ -1,2 +1,1 @@
-# ThanxDude2
-A simple android "Lost and Found app"
+A simple "Lost and Found" android app. Made using JAVA and Firebase as a backend,
